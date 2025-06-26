@@ -44,3 +44,6 @@ coverage/
 
 # Misc
 *.tsbuildinfo
+
+# postcss
+postcss.config.cjs

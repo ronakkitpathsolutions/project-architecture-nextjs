@@ -19,12 +19,6 @@ const nextConfig: NextConfig = {
     AUTH_SECRET: process.env.AUTH_SECRET,
     API_KEY: process.env.API_KEY,
   },
-
-  // Webpack configuration to handle environment variables
-  webpack: (config, { dev: _dev, isServer: _isServer }) => {
-    // Custom webpack configuration if needed
-    return config;
-  },
 };
 
 export default nextConfig;
