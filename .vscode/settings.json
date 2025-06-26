@@ -11,7 +11,7 @@
     "typescriptreact"
   ],
   "typescript.preferences.importModuleSpecifier": "relative",
-  "files.eol": "\n",
+  "files.eol": "auto",
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true
 }
