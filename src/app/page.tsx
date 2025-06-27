@@ -1,3 +1,5 @@
+import { ThemeDemo } from '@/components/ThemeDemo';
+
 export default function Home() {
-  return <div>Home Page</div>;
+  return <ThemeDemo />;
 }

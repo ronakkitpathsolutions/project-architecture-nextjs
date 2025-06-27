@@ -1,17 +1,16 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import '@mantine/core/styles.css';
-import {
-  ColorSchemeScript,
-  MantineProvider,
-  mantineHtmlProps,
-} from '@mantine/core';
+import { ColorSchemeScript, mantineHtmlProps } from '@mantine/core';
+import ThemeProvider from '../theme/provider';
 
 const poppins = Poppins({
   variable: '--font-poppins',
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  fallback: ['system-ui', 'arial'],
 });
 
 export const metadata: Metadata = {
@@ -41,6 +40,9 @@ export const metadata: Metadata = {
     locale: 'en_US',
     type: 'website',
   },
+};
+
+export const viewport: Viewport = {
   themeColor: '#0A192F',
 };
 
@@ -54,8 +56,8 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body className={`${poppins.variable}`}>
-        <MantineProvider>{children}</MantineProvider>
+      <body className={`${poppins.variable}`} suppressHydrationWarning={true}>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
