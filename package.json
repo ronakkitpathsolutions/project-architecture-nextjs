@@ -11,7 +11,10 @@
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "format": "prettier --write . && next lint --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "dev:development": "dotenv -e .env.development -- next dev --turbopack",
+    "dev:staging": "dotenv -e .env.staging -- next dev --turbopack",
+    "dev:production": "dotenv -e .env.production -- next dev --turbopack"
   },
   "dependencies": {
     "@mantine/core": "^8.1.2",
@@ -19,7 +22,9 @@
     "@sentry/nextjs": "^9.33.0",
     "next": "15.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.59.0",
+    "zod": "^3.25.67"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -28,6 +33,7 @@
     "@types/react-dom": "^19",
     "@typescript-eslint/eslint-plugin": "^8.35.0",
     "@typescript-eslint/parser": "^8.35.0",
+    "dotenv-cli": "^8.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.4",
     "eslint-config-prettier": "^10.1.5",

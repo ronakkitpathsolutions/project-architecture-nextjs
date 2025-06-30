@@ -71,12 +71,10 @@ npm run lint:fix
 
 Use conventional commits format:
 
-```
 type(scope): description
 
 Types: feat, fix, docs, style, refactor, test, chore, perf, ci, build, revert
 Example: feat(auth): add user login functionality
-```
 
 ## VS Code Integration
 

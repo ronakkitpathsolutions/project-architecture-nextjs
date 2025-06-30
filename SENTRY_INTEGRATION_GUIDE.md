@@ -4,14 +4,14 @@
 
 Your Sentry integration is now properly set up and working correctly. Here's what was fixed and how to verify everything is working:
 
-## Fixed Issues:
+## Fixed Issues
 
 1. **✅ Added missing `@sentry/nextjs` package** - Installed the required Sentry package
 2. **✅ Fixed client-side configuration** - Moved client config to proper `instrumentation-client.ts` file
 3. **✅ Updated instrumentation setup** - Properly configured for all runtime environments
 4. **✅ Added test routes** - Created test endpoints to verify functionality
 
-## Configuration Files Status:
+## Configuration Files Status
 
 ### ✅ Server Configuration (`sentry.server.config.ts`)
 
@@ -38,7 +38,7 @@ Your Sentry integration is now properly set up and working correctly. Here's wha
 - ✅ Source maps upload enabled
 - ✅ Organization and project configured
 
-## How to Test Your Sentry Integration:
+## How to Test Your Sentry Integration
 
 ### 1. **Test Server-Side Error Capture**
 
@@ -70,7 +70,7 @@ Visit: `http://localhost:3001/api/test-sentry`
    - Performance tab: Should show transaction traces
    - Session Replay: Should show user sessions (if enabled)
 
-## Verification Checklist:
+## Verification Checklist
 
 - ✅ Development server starts without Sentry errors
 - ✅ Build process completes successfully
@@ -78,7 +78,7 @@ Visit: `http://localhost:3001/api/test-sentry`
 - ✅ Test routes work correctly
 - ✅ Errors are captured and sent to Sentry
 
-## Production Recommendations:
+## Production Recommendations
 
 ### 1. **Adjust Sample Rates**
 
@@ -102,20 +102,20 @@ tracesSampleRate: parseFloat(process.env.SENTRY_TRACES_SAMPLE_RATE || '0.1'),
 
 Your auth token and configuration in `next.config.ts` should handle this automatically.
 
-## Troubleshooting:
+## Troubleshooting
 
-### If errors aren't appearing in Sentry:
+### If errors aren't appearing in Sentry
 
 1. Check DSN is correct
 2. Verify network connectivity
 3. Temporarily enable debug mode to see console logs
 4. Check Sentry project settings and quotas
 
-### To enable debug mode temporarily:
+### To enable debug mode temporarily
 
 Set `debug: true` in all three config files and restart the development server.
 
-## Current DSN:
+## Current DSN
 
 `https://795eae918958c0cf8006237a52667501@o4509570880897024.ingest.us.sentry.io/4509570882011136`
 
