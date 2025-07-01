@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Account Layout',
+  title: 'Account | Architecture',
   description: 'Account layout for the Project Architecture Next.js Template',
 };
 const AccountLayout = ({ children }: { children: React.ReactNode }) => {

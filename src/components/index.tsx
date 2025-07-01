@@ -11,3 +11,5 @@ export { ScreenLoader } from './screen-loader';
 export { Popover } from './popover';
 export { Tooltip } from './tooltip';
 export { Input } from './inputs/input';
+export { Menu } from './menu';
+export { ConfirmModal } from './confirm-modal';

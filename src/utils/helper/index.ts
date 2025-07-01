@@ -1,5 +1,4 @@
 import { jwtDecode } from 'jwt-decode';
-import { cookies } from 'next/headers';
 import { API } from '../../configs/env';
 
 export interface LogError {
@@ -16,20 +15,15 @@ export const isNotEmptyObject = (
   return typeof obj === 'object' && obj !== null && Object.keys(obj).length > 0;
 };
 
-export const getToken = async (): Promise<string | undefined> => {
+// Alternative function for use in contexts where cookies() is not available
+export const getTokenSync = (): string | undefined => {
   if (typeof window !== 'undefined') {
     // client
     const match = document.cookie.match(new RegExp('(^| )token=([^;]+)'));
     return match?.[2];
-  } else {
-    try {
-      // server
-      const cookieStore = await cookies();
-      return cookieStore.get('token')?.value;
-    } catch {
-      return '';
-    }
   }
+  // For server-side, return undefined if cookies() is not available
+  return '';
 };
 
 export const decodeToken = (token: string | null = null) => {
@@ -171,6 +165,27 @@ export const createFileUrl = (url = ''): string => {
   if (absoluteUrlRegex.test(url)) {
     return url;
   }
-
   return `${API.URL}${url}`;
+};
+
+export const isInitialSetCookies = () => {
+  if (typeof window !== 'undefined') {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    localStorage.removeItem('refreshToken');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('refreshToken');
+
+    // Clear cookies
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie =
+      'refreshToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie =
+      'session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+
+    return true;
+  }
+  return false;
 };

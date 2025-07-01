@@ -13,12 +13,13 @@ export const APP = {};
 
 // API configuration
 export const API = {
-  URL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
+  URL: process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000',
 };
 
 // Server configuration
 export const SERVER = {
   PORT: parseInt(process.env.NEXT_PUBLIC_PORT || '3000', 10),
+  URL: process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000',
 };
 
 // Database configuration

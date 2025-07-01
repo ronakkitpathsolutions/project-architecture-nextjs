@@ -1,10 +1,16 @@
-import { API } from '../configs/env';
-import { isNotEmptyObject, getToken, apiAsyncHandler } from '@/utils/helper';
+import { API, SERVER } from '../configs/env';
+import {
+  isNotEmptyObject,
+  apiAsyncHandler,
+  getTokenSync,
+} from '@/utils/helper';
 import { ERROR_MESSAGES } from '../utils/constants';
 
 const BASE_URL = API.URL;
 const DEFAULT_PREFIX = '/api';
 const FULL_BASE_URL = `${BASE_URL}${DEFAULT_PREFIX}`;
+
+const FULL_SERVER_URL = `${SERVER.URL}${DEFAULT_PREFIX}`;
 
 export const METHODS = {
   POST: 'post',
@@ -22,11 +28,13 @@ const client = async ({
   data = {},
   cookieToken = '',
   headers = {},
+  isServer = false,
   ...rest
 }: {
   method: string;
   url: string;
   cookieToken?: string;
+  isServer?: boolean;
   headers?: Record<string, string>;
   data?: {
     params?: any;
@@ -34,7 +42,9 @@ const client = async ({
   };
   rest?: Record<string, unknown>;
 }) => {
-  let fullUrl = `${FULL_BASE_URL}${url}`;
+  let fullUrl = isServer
+    ? `${FULL_SERVER_URL}${url}`
+    : `${FULL_BASE_URL}${url}`;
   let token = cookieToken;
 
   const { params, ...restData } = data;
@@ -49,8 +59,8 @@ const client = async ({
   }
 
   // ✅ On server, read cookies via `next/headers`
-  if (!token && typeof window === 'undefined') {
-    const tokenCookie = await getToken();
+  if (!token && typeof window !== 'undefined') {
+    const tokenCookie = getTokenSync();
     token = tokenCookie || '';
   }
 

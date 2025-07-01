@@ -16,6 +16,13 @@ export const api = {
         data,
         ...configs,
       }),
+    logout: ({ ...configs }: { [key: string]: any } = {}) =>
+      client({
+        isServer: true,
+        url: '/auth/logout',
+        method: METHODS.POST,
+        ...configs,
+      }),
   },
   users: {
     getAll: ({ data, ...configs }: { [key: string]: any }) =>
